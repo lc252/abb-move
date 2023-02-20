@@ -1,7 +1,7 @@
 <launch>
 
     <!-- Specify the config files to use -->
-    <rosparam ns="moveit_cpp_tutorial" command="load" file="$(find moveit_tutorials)/doc/moveit_cpp/config/moveit_cpp.yaml" />
+    <rosparam ns="moveit_cpp_tutorial" command="load" file="$(find moveit_cpp)/config/moveit_cpp.yaml" />
 
     <!-- Planning Pipeline -->
     <include ns="/moveit_cpp_tutorial/ompl" file="$(find abb_irb1200_7_70_moveit_config)/launch/ompl_planning_pipeline.launch.xml"/>
@@ -29,10 +29,10 @@
 
     <!-- Launch RViz -->
     <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
-      args="-d $(find moveit_tutorials)/doc/moveit_cpp/launch/moveit_cpp_tutorial.rviz" output="screen">
+      args="-d $(find moveit_cpp)/moveit_cpp_tutorial.rviz" output="screen">
       <rosparam command="load" file="$(find abb_irb1200_7_70_moveit_config)/config/kinematics.yaml"/>
     </node>
 
-    <include file="$(find moveit_tutorials)/doc/moveit_cpp/launch/moveit_cpp_node.launch"/>
+    <include file="$(find moveit_cpp)/moveit_cpp_node.launch"/>
 
 </launch>
