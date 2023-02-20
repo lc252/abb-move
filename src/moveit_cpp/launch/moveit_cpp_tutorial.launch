@@ -29,10 +29,10 @@
 
     <!-- Launch RViz -->
     <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
-      args="-d $(find moveit_cpp)/moveit_cpp_tutorial.rviz" output="screen">
+      args="-d $(find moveit_cpp)/launch/moveit_cpp_tutorial.rviz" output="screen">
       <rosparam command="load" file="$(find abb_irb1200_7_70_moveit_config)/config/kinematics.yaml"/>
     </node>
 
-    <include file="$(find moveit_cpp)/moveit_cpp_node.launch"/>
+    <include file="$(find moveit_cpp)/launch/moveit_cpp_node.launch"/>
 
 </launch>
