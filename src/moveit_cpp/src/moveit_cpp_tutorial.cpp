@@ -49,9 +49,9 @@ int main(int argc, char** argv)
   visual_tools.deleteAllMarkers();
   visual_tools.loadRemoteControl();
 
-  Eigen::Isometry3d text_pose = Eigen::Isometry3d::Identity();
-  text_pose.translation().z() = 1.75;
-  visual_tools.publishText(text_pose, "MoveItCpp Demo", rvt::WHITE, rvt::XLARGE);
+  // Eigen::Isometry3d text_pose = Eigen::Isometry3d::Identity();
+  // text_pose.translation().z() = 1.75;
+  // visual_tools.publishText(text_pose, "MoveItCpp Demo", rvt::WHITE, rvt::XLARGE);
   visual_tools.trigger();
 
   // Start the demo
@@ -87,10 +87,10 @@ int main(int argc, char** argv)
   {
     // Visualize the start pose in Rviz
     visual_tools.publishAxisLabeled(robot_start_state->getGlobalLinkTransform("tool0"), "start_pose");
-    visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
+    // visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
     // Visualize the goal pose in Rviz
     visual_tools.publishAxisLabeled(target_pose1.pose, "target_pose");
-    visual_tools.publishText(text_pose, "Goal Pose", rvt::WHITE, rvt::XLARGE);
+    // visual_tools.publishText(text_pose, "Goal Pose", rvt::WHITE, rvt::XLARGE);
     // Visualize the trajectory in Rviz
     visual_tools.publishTrajectoryLine(plan_solution1.trajectory_, joint_model_group_ptr);
     visual_tools.trigger();
@@ -107,137 +107,137 @@ int main(int argc, char** argv)
   //
 
   // Start the next plan
-  visual_tools.deleteAllMarkers();
-  visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
+  // visual_tools.deleteAllMarkers();
+  // visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
 
-  // Plan #2
-  // ^^^^^^^
-  //
-  // Here we will set the current state of the plan using
-  // moveit::core::RobotState
-  auto start_state = *(moveit_cpp_ptr->getCurrentState());
-  geometry_msgs::Pose start_pose;
-  start_pose.orientation.w = 1.0;
-  start_pose.position.x = 0.55;
-  start_pose.position.y = 0.0;
-  start_pose.position.z = 0.6;
+  // // Plan #2
+  // // ^^^^^^^
+  // //
+  // // Here we will set the current state of the plan using
+  // // moveit::core::RobotState
+  // auto start_state = *(moveit_cpp_ptr->getCurrentState());
+  // geometry_msgs::Pose start_pose;
+  // start_pose.orientation.w = 1.0;
+  // start_pose.position.x = 0.55;
+  // start_pose.position.y = 0.0;
+  // start_pose.position.z = 0.6;
 
-  start_state.setFromIK(joint_model_group_ptr, start_pose);
+  // start_state.setFromIK(joint_model_group_ptr, start_pose);
 
-  planning_components->setStartState(start_state);
+  // planning_components->setStartState(start_state);
 
-  // We will reuse the old goal that we had and plan to it.
-  auto plan_solution2 = planning_components->plan();
-  if (plan_solution2)
-  {
-    moveit::core::RobotState robot_state(robot_model_ptr);
-    moveit::core::robotStateMsgToRobotState(plan_solution2.start_state_, robot_state);
+  // // We will reuse the old goal that we had and plan to it.
+  // auto plan_solution2 = planning_components->plan();
+  // if (plan_solution2)
+  // {
+  //   moveit::core::RobotState robot_state(robot_model_ptr);
+  //   moveit::core::robotStateMsgToRobotState(plan_solution2.start_state_, robot_state);
 
-    visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
-    visual_tools.publishAxisLabeled(robot_state.getGlobalLinkTransform("tool0"), "start_pose");
-    visual_tools.publishText(text_pose, "Goal Pose", rvt::WHITE, rvt::XLARGE);
-    visual_tools.publishAxisLabeled(target_pose1.pose, "target_pose");
-    visual_tools.publishTrajectoryLine(plan_solution2.trajectory_, joint_model_group_ptr);
-    visual_tools.trigger();
+  //   visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
+  //   visual_tools.publishAxisLabeled(robot_state.getGlobalLinkTransform("tool0"), "start_pose");
+  //   visual_tools.publishText(text_pose, "Goal Pose", rvt::WHITE, rvt::XLARGE);
+  //   visual_tools.publishAxisLabeled(target_pose1.pose, "target_pose");
+  //   visual_tools.publishTrajectoryLine(plan_solution2.trajectory_, joint_model_group_ptr);
+  //   visual_tools.trigger();
 
-    /* Uncomment if you want to execute the plan */
-    /* planning_components->execute(); // Execute the plan */
-  }
+  //   /* Uncomment if you want to execute the plan */
+  //   /* planning_components->execute(); // Execute the plan */
+  // }
 
-  // Plan #2 visualization:
-  //
-  // .. image:: images/moveitcpp_plan2.png
-  //    :width: 250pt
-  //    :align: center
-  //
+  // // Plan #2 visualization:
+  // //
+  // // .. image:: images/moveitcpp_plan2.png
+  // //    :width: 250pt
+  // //    :align: center
+  // //
 
-  // Start the next plan
-  visual_tools.deleteAllMarkers();
-  visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
+  // // Start the next plan
+  // visual_tools.deleteAllMarkers();
+  // visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
 
-  // Plan #3
-  // ^^^^^^^
-  //
-  // We can also set the goal of the plan using
-  // moveit::core::RobotState
-  auto target_state = *robot_start_state;
-  geometry_msgs::Pose target_pose2;
-  target_pose2.orientation.w = 1.0;
-  target_pose2.position.x = 0.55;
-  target_pose2.position.y = -0.05;
-  target_pose2.position.z = 0.8;
+  // // Plan #3
+  // // ^^^^^^^
+  // //
+  // // We can also set the goal of the plan using
+  // // moveit::core::RobotState
+  // auto target_state = *robot_start_state;
+  // geometry_msgs::Pose target_pose2;
+  // target_pose2.orientation.w = 1.0;
+  // target_pose2.position.x = 0.55;
+  // target_pose2.position.y = -0.05;
+  // target_pose2.position.z = 0.8;
 
-  target_state.setFromIK(joint_model_group_ptr, target_pose2);
+  // target_state.setFromIK(joint_model_group_ptr, target_pose2);
 
-  planning_components->setGoal(target_state);
+  // planning_components->setGoal(target_state);
 
-  // We will reuse the old start that we had and plan from it.
-  auto plan_solution3 = planning_components->plan();
-  if (plan_solution3)
-  {
-    moveit::core::RobotState robot_state(robot_model_ptr);
-    moveit::core::robotStateMsgToRobotState(plan_solution3.start_state_, robot_state);
+  // // We will reuse the old start that we had and plan from it.
+  // auto plan_solution3 = planning_components->plan();
+  // if (plan_solution3)
+  // {
+  //   moveit::core::RobotState robot_state(robot_model_ptr);
+  //   moveit::core::robotStateMsgToRobotState(plan_solution3.start_state_, robot_state);
 
-    visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
-    visual_tools.publishAxisLabeled(robot_state.getGlobalLinkTransform("tool0"), "start_pose");
-    visual_tools.publishText(text_pose, "Goal Pose", rvt::WHITE, rvt::XLARGE);
-    visual_tools.publishAxisLabeled(target_pose2, "target_pose");
-    visual_tools.publishTrajectoryLine(plan_solution3.trajectory_, joint_model_group_ptr);
-    visual_tools.trigger();
+  //   visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
+  //   visual_tools.publishAxisLabeled(robot_state.getGlobalLinkTransform("tool0"), "start_pose");
+  //   visual_tools.publishText(text_pose, "Goal Pose", rvt::WHITE, rvt::XLARGE);
+  //   visual_tools.publishAxisLabeled(target_pose2, "target_pose");
+  //   visual_tools.publishTrajectoryLine(plan_solution3.trajectory_, joint_model_group_ptr);
+  //   visual_tools.trigger();
 
-    /* Uncomment if you want to execute the plan */
-    /* planning_components->execute(); // Execute the plan */
-  }
+  //   /* Uncomment if you want to execute the plan */
+  //   /* planning_components->execute(); // Execute the plan */
+  // }
 
-  // Plan #3 visualization:
-  //
-  // .. image:: images/moveitcpp_plan3.png
-  //    :width: 250pt
-  //    :align: center
-  //
+  // // Plan #3 visualization:
+  // //
+  // // .. image:: images/moveitcpp_plan3.png
+  // //    :width: 250pt
+  // //    :align: center
+  // //
 
-  // Start the next plan
-  visual_tools.deleteAllMarkers();
-  visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
+  // // Start the next plan
+  // visual_tools.deleteAllMarkers();
+  // visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
 
-  // Plan #4
-  // ^^^^^^^
-  //
-  // We can set the start state of the plan to the current state of the robot
-  // We can set the goal of the plan using the name of a group states
-  // for panda robot we have one named robot state for "panda_arm" planning group called "ready"
-  // see `panda_arm.xacro
-  // <https://github.com/ros-planning/panda_moveit_config/blob/noetic-devel/config/arm.xacro#L13>`_
+  // // Plan #4
+  // // ^^^^^^^
+  // //
+  // // We can set the start state of the plan to the current state of the robot
+  // // We can set the goal of the plan using the name of a group states
+  // // for panda robot we have one named robot state for "panda_arm" planning group called "ready"
+  // // see `panda_arm.xacro
+  // // <https://github.com/ros-planning/panda_moveit_config/blob/noetic-devel/config/arm.xacro#L13>`_
 
-  /* // Set the start state of the plan from a named robot state */
-  /* planning_components->setStartState("ready"); // Not implemented yet */
-  // Set the goal state of the plan from a named robot state
-  planning_components->setGoal("ready");
+  // /* // Set the start state of the plan from a named robot state */
+  // /* planning_components->setStartState("ready"); // Not implemented yet */
+  // // Set the goal state of the plan from a named robot state
+  // planning_components->setGoal("ready");
 
-  // Again we will reuse the old start that we had and plan from it.
-  auto plan_solution4 = planning_components->plan();
-  if (plan_solution4)
-  {
-    moveit::core::RobotState robot_state(robot_model_ptr);
-    moveit::core::robotStateMsgToRobotState(plan_solution4.start_state_, robot_state);
+  // // Again we will reuse the old start that we had and plan from it.
+  // auto plan_solution4 = planning_components->plan();
+  // if (plan_solution4)
+  // {
+  //   moveit::core::RobotState robot_state(robot_model_ptr);
+  //   moveit::core::robotStateMsgToRobotState(plan_solution4.start_state_, robot_state);
 
-    visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
-    visual_tools.publishAxisLabeled(robot_state.getGlobalLinkTransform("tool0"), "start_pose");
-    visual_tools.publishText(text_pose, "Goal Pose", rvt::WHITE, rvt::XLARGE);
-    visual_tools.publishAxisLabeled(robot_start_state->getGlobalLinkTransform("tool0"), "target_pose");
-    visual_tools.publishTrajectoryLine(plan_solution4.trajectory_, joint_model_group_ptr);
-    visual_tools.trigger();
+  //   visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
+  //   visual_tools.publishAxisLabeled(robot_state.getGlobalLinkTransform("tool0"), "start_pose");
+  //   visual_tools.publishText(text_pose, "Goal Pose", rvt::WHITE, rvt::XLARGE);
+  //   visual_tools.publishAxisLabeled(robot_start_state->getGlobalLinkTransform("tool0"), "target_pose");
+  //   visual_tools.publishTrajectoryLine(plan_solution4.trajectory_, joint_model_group_ptr);
+  //   visual_tools.trigger();
 
-    /* Uncomment if you want to execute the plan */
-    /* planning_components->execute(); // Execute the plan */
-  }
+  //   /* Uncomment if you want to execute the plan */
+  //   /* planning_components->execute(); // Execute the plan */
+  // }
 
-  // Plan #4 visualization:
-  //
-  // .. image:: images/moveitcpp_plan4.png
-  //    :width: 250pt
-  //    :align: center
-  //
+  // // Plan #4 visualization:
+  // //
+  // // .. image:: images/moveitcpp_plan4.png
+  // //    :width: 250pt
+  // //    :align: center
+  // //
 
   // END_TUTORIAL
   visual_tools.deleteAllMarkers();
