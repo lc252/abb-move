@@ -73,10 +73,10 @@ int main(int argc, char** argv)
   geometry_msgs::PoseStamped target_pose1;
   target_pose1.header.frame_id = "base_link";
   target_pose1.pose.orientation.w = 1.0;
-  target_pose1.pose.position.x = 0.28;
-  target_pose1.pose.position.y = -0.2;
-  target_pose1.pose.position.z = 0.5;
-  planning_components->setGoal(target_pose1, "tool0");
+  target_pose1.pose.position.x = 0.632;
+  target_pose1.pose.position.y = 0;
+  target_pose1.pose.position.z = 0.791;
+  planning_components->setGoal(target_pose1, "link_6");
 
   // Now, we call the PlanningComponents to compute the plan and visualize it.
   // Note that we are just planning
@@ -86,7 +86,7 @@ int main(int argc, char** argv)
   if (plan_solution1)
   {
     // Visualize the start pose in Rviz
-    visual_tools.publishAxisLabeled(robot_start_state->getGlobalLinkTransform("tool0"), "start_pose");
+    visual_tools.publishAxisLabeled(robot_start_state->getGlobalLinkTransform("link_6"), "start_pose");
     // visual_tools.publishText(text_pose, "Start Pose", rvt::WHITE, rvt::XLARGE);
     // Visualize the goal pose in Rviz
     visual_tools.publishAxisLabeled(target_pose1.pose, "target_pose");
@@ -96,7 +96,7 @@ int main(int argc, char** argv)
     visual_tools.trigger();
 
     /* Uncomment if you want to execute the plan */
-    /* planning_components->execute(); // Execute the plan */
+    planning_components->execute(); // Execute the plan
   }
 
   // Plan #1 visualization:
