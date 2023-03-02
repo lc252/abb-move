@@ -20,6 +20,7 @@ Other ROS dependencies:
 
 To play around with the robot and simulate movement run `roslaunch abb_irb1200_7_70_moveit_config demo.launch` in a terminal. Move the goal state position in RViz and press Plan and Execute. Two ghosts will track towards the orange goal state, the first is the planned path and the second is the excecuted path.
 To begin ros-unity communication run `roslaunch ros_tcp_endpoint endpoint.launch tcp_ip:=[IP_ADDRESS]` in a new terminal.
+
 On the HoloLens, run the ABB-Simulation (link) application. Look at the QR to locate the robot, first a square should appear, look away and then look back. The simulated robot will be in the pose that is currently being published. To move the robot, drag the end effector in the RViz simulation and hit Plan and Execute. Note that the orange goal pose, green start pose and planning pose are not published or visualised in the HoloLens, only the executed, "real" pose is.
 
 # Future Plans
@@ -29,3 +30,4 @@ On the HoloLens, run the ABB-Simulation (link) application. Look at the QR to lo
 - Visualise the goal pose as well as current pose
 - Visualise null space exploration
 - Interact with individial links
+- Change TCP IP from within Unity Application, currently it is hardcoded
